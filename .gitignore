@@ -1,0 +1,12 @@
+# Maven build target directory
+target/
+
+# IDE settings
+.idea/
+*.iml
+.settings/
+.project
+.classpath
+
+# Active local environment configurations containing secrets
+**/src/main/resources/application-local.yml
