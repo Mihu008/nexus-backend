@@ -1,0 +1,29 @@
+{
+  "properties": [
+    {
+      "name": "langchain4j.google-ai-gemini.api-key",
+      "type": "java.lang.String",
+      "description": "API Key for Google Gemini AI authentication."
+    },
+    {
+      "name": "langchain4j.google-ai-gemini.model-name",
+      "type": "java.lang.String",
+      "description": "Target model name for Google Gemini AI (e.g. gemini-2.5-flash, gemini-1.5-flash)."
+    },
+    {
+      "name": "langchain4j.google-ai-gemini.temperature",
+      "type": "java.lang.Double",
+      "description": "Temperature parameter for Gemini AI response generation."
+    },
+    {
+      "name": "langchain4j.agentic.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Specifies whether to enable autonomous agentic workflows."
+    },
+    {
+      "name": "langchain4j.agentic.orchestration.mode",
+      "type": "java.lang.String",
+      "description": "Orchestration strategy mode (e.g. declarative)."
+    }
+  ]
+}

@@ -26,18 +26,14 @@ spring:
     mcp:
       server:
         enabled: true
-        transport: stdio
-
-google:
-  ai:
-    api-key: ${GOOGLE_AI_API_KEY}
+        stdio: true
 
 # LangChain4j Configuration
 langchain4j:
   google-ai-gemini:
     api-key: ${GOOGLE_AI_API_KEY}
-    model-name: gemini-2.5-flash
-    temperature: 0.7
+    model-name: ${GOOGLE_AI_MODEL_NAME:gemini-2.5-flash}
+    temperature: ${GOOGLE_AI_TEMPERATURE:0.7}
   
   agentic:
     enabled: true
@@ -47,5 +43,5 @@ langchain4j:
 logging:
   level:
     root: INFO
-    com.nexus: DEBUG
-    dev.langchain4j: DEBUG
+    "[com.nexus]": DEBUG
+    "[dev.langchain4j]": DEBUG

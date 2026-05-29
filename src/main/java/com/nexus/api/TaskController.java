@@ -48,6 +48,16 @@ public class TaskController {
     }
 
     /**
+     * Stops/cancels an executing task.
+     */
+    @PostMapping("/{taskId}/stop")
+    public ResponseEntity<Map<String, String>> stopTask(@PathVariable UUID taskId) {
+        taskService.updateTaskStatus(taskId, com.nexus.model.enums.TaskStatus.FAILED);
+        taskService.addLog(taskId, com.nexus.model.enums.LogLevel.ERROR, "Task execution stopped by user.");
+        return ResponseEntity.ok(Map.of("message", "Task stopped successfully."));
+    }
+
+    /**
      * Retrieves all tasks ordered by creation date descending.
      */
     @GetMapping
