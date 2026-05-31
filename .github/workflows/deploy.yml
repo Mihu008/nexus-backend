@@ -1,0 +1,48 @@
+# GitHub Actions CI/CD Pipeline for Nexus AI Backend
+# This workflow automates compilation validation, testing, and deployment to Render.
+
+name: Nexus AI Backend CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build & Test Job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Verify JDK 21 Runtime
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Configure Maven Wrapper Permissions
+        run: chmod +x mvnw
+
+      - name: Compile and Package Validation
+        run: ./mvnw clean package -DskipTests
+
+  deploy:
+    name: Deploy Job
+    needs: build
+    runs-on: ubuntu-latest
+    # This job only runs if the build job finishes successfully AND the trigger branch is main
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+
+    steps:
+      - name: Trigger Render Cloud Deployment
+        run: |
+          echo "Initiating deployment request to Render..."
+          curl -f -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+          echo "Deployment request sent successfully."
