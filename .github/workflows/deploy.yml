@@ -29,9 +29,11 @@ jobs:
 
       - name: Configure Maven Wrapper Permissions
         run: chmod +x mvnw
+        working-directory: ./nexus-backend
 
       - name: Compile and Package Validation
         run: ./mvnw clean package -DskipTests
+        working-directory: ./nexus-backend
 
   deploy:
     name: Deploy Job
