@@ -40,7 +40,8 @@ public class VectorStoreConfig {
     public EmbeddingModel embeddingModel() {
         return GoogleAiEmbeddingModel.builder()
                 .apiKey(apiKey)
-                .modelName("text-embedding-004")
+                .modelName("gemini-embedding-001")
+                .outputDimensionality(768)
                 .build();
     }
 

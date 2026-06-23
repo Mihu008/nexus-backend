@@ -72,7 +72,7 @@ public class DocumentIngestionService {
             }
 
             // 3. Embedding
-            log.info("Embedding: Generating embeddings for {} chunks using text-embedding-004", segments.size());
+            log.info("Embedding: Generating embeddings for {} chunks using gemini-embedding-001", segments.size());
             List<Embedding> embeddings = embeddingModel.embedAll(segments).content();
             log.info("Embedding: Generated {} embeddings for file '{}'", embeddings.size(), originalFilename);
 
